@@ -2,3 +2,5 @@
 * text=auto
 __pycachw
 get-pip.py
+.vscode
+script instalacionpip.py

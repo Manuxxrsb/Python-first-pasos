@@ -12,24 +12,31 @@ from bs4 import BeautifulSoup
 
 url = 'https://www.farmaciasahumada.cl/ahumada/vitaminas/esenciales'
 
-response = requests.get(url) #obtengo el codigo de operacion
+response = requests.get(url) #obtengo el codigo de operaion
 print(response)
 
 soup = BeautifulSoup(response.text, 'html.parser')
 productos = soup.find_all('div',class_ = "col-6 col-sm-4 col-lg-3")
 print("Productos encontrados:",len(productos))
 
-#ahora accedo a los datos especificos que quiero
 
-proveedores = soup.find_all('span' , class_="link")
-nombre = soup.find_all('div',class__="pdp-link")
-#print(titulo[0])
+#muestro los productos de manera ordenada
+for i in range(len(productos)):
+    print("----------------------------------------------")
+    laboratorio = productos[i].find('span',class_="link")
+    nombre_producto = productos[i].find('a',class_="link")
+    precio = productos[i].find('span',class_="d-block default-price")
+    
+    print("Laboratorio: " + laboratorio.text.strip() + "\nNombre producto: ",nombre_producto.text.strip() + "\nPrecio producto: ",precio.text.strip())
 
-#texto = proveedores[0].get_text() #guardo el texto del span
 
-for i in range(len(productos)): #accedo a todos los productos
-    print(proveedores[i].get_text())
-    print(nombre[i].get_text())
+
+
+
+
+
+
+
     
     
 
